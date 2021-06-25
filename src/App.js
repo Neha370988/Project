@@ -1,29 +1,35 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      demo: "Default text"
-    };
-  }
+const App = () => {
+  const [num,setNum] = useState(0);
+  const [nums,setNums]= useState(0)
 
-  handleBtnClick = () => {
-    this.setState({
-      demo: "State has been changed"
-    });
+  useEffect(() => {
+    alert("I am clicked");
+  },[num]);
+
+return (
+  <>
+    <button
+      onClick = {() => {
+      setNum(num+1)
+    }}
+    >
+    click me {num}
+    </button>
+    <br/>
+    <button
+    onClick = {() => {
+      setNums(nums+1)
+    }}
+    >
+      click me {nums}
+    </button>
+    
+</>
+);
   };
 
-  render() {
-    return (
-      <div className="App">
-        <h1>{this.state.demo}</h1>
-        <h2>Click on the button to see some magic happen!</h2>
-        <button onClick={this.handleBtnClick}>Click Me</button>
-      </div>
-    );
-  }
-}
 
 export default App;
