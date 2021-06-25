@@ -1,31 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 
 const App = () => {
-  const [num,setNum] = useState(0);
-  const [nums,setNums]= useState(0)
+  const [name,setName] = useState(' ');
+  const inputRef= useRef()
+  const renderCount = useRef(0)
 
-  useEffect(() => {
-    alert("I am clicked");
-  },[num]);
+  useEffect (() =>{
+   renderCount.current = renderCount.current + 1
+})
+
+  
 
 return (
   <>
-    <button
-      onClick = {() => {
-      setNum(num+1)
-    }}
-    >
-    click me {num}
-    </button>
-    <br/>
-    <button
-    onClick = {() => {
-      setNums(nums+1)
-    }}
-    >
-      click me {nums}
-    </button>
+    <input ref = {inputRef} value={name} onChange = {e => setName(e.target.value)}/>
+    <div> I am  {name}</div>
+    <div>I Rendered {renderCount.current} times </div>
     
 </>
 );
